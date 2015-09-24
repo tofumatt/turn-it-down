@@ -1,0 +1,13 @@
+#!/usr/bin/env python
+
+import soco
+
+if __name__ == '__main__':
+    for zone in list(soco.discover()):
+        if zone.player_name == "Living Room":
+            info = zone.get_current_transport_info()
+            if info['current_transport_state'] != 'PLAYING':
+                zone.switch_to_line_in()
+                zone.play()
+            else:
+                zone.stop()
